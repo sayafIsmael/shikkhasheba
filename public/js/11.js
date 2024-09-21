@@ -188,7 +188,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, ".vx-card__body[data-v-42fb7f4d] {\n  padding: 0.5rem !important;\n}\n", ""]);
+exports.push([module.i, ".vx-card__body[data-v-42fb7f4d] {\n  padding: 0.5rem !important;\n}\r\n", ""]);
 
 // exports
 

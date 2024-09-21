@@ -1710,7 +1710,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".cursor-pointer a[data-v-0fe2ec51] {\n  color: #626262;\n}\n.cursor-pointer[data-v-0fe2ec51] :hover {\n  color: white;\n}\n", ""]);
+exports.push([module.i, ".cursor-pointer a[data-v-0fe2ec51] {\n  color: #626262;\n}\n.cursor-pointer[data-v-0fe2ec51] :hover {\n  color: white;\n}\r\n", ""]);
 
 // exports
 

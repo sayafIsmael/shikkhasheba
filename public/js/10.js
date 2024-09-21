@@ -275,7 +275,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "/* .vx-card .vx-card__collapsible-content .vx-card__body{\n  padding-left: 0px !important;\n  padding-right: 0px !important;\n} */\n", ""]);
+exports.push([module.i, "/* .vx-card .vx-card__collapsible-content .vx-card__body{\r\n  padding-left: 0px !important;\r\n  padding-right: 0px !important;\r\n} */\r\n", ""]);
 
 // exports
 

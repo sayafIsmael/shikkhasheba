@@ -227,7 +227,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".vx-card__body[data-v-18690e68] {\n  padding: 0.5rem !important;\n}\n", ""]);
+exports.push([module.i, ".vx-card__body[data-v-18690e68] {\n  padding: 0.5rem !important;\n}\r\n", ""]);
 
 // exports
 

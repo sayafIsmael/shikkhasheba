@@ -172,7 +172,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".cover-container img[data-v-6cdd2402] {\n  height: 250px;\n}\n.w-personal-info[data-v-6cdd2402] {\n  margin-bottom: 0;\n}\n.w-personal-info li[data-v-6cdd2402] {\n  padding: 15px 0;\n}\n.w-personal-info.item-block .title[data-v-6cdd2402] {\n  margin-right: 0;\n  float: none;\n  width: auto;\n}\n.w-personal-info li .title[data-v-6cdd2402] {\n  color: #515365;\n  font-weight: 500;\n  margin-right: 30px;\n  float: left;\n  width: 30%;\n}\n.w-personal-info li .text[data-v-6cdd2402] {\n  color: #888da8;\n  display: block;\n  overflow: hidden;\n}\n", ""]);
+exports.push([module.i, ".cover-container img[data-v-6cdd2402] {\n  height: 250px;\n}\n.w-personal-info[data-v-6cdd2402] {\n  margin-bottom: 0;\n}\n.w-personal-info li[data-v-6cdd2402] {\n  padding: 15px 0;\n}\n.w-personal-info.item-block .title[data-v-6cdd2402] {\n  margin-right: 0;\n  float: none;\n  width: auto;\n}\n.w-personal-info li .title[data-v-6cdd2402] {\n  color: #515365;\n  font-weight: 500;\n  margin-right: 30px;\n  float: left;\n  width: 30%;\n}\n.w-personal-info li .text[data-v-6cdd2402] {\n  color: #888da8;\n  display: block;\n  overflow: hidden;\n}\r\n", ""]);
 
 // exports
 
