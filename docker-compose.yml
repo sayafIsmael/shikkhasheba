@@ -1,35 +1,31 @@
-version: '3.7'
+version: '3.8'
 
 services:
-  app:
+  web:
+    image: shikkhaseba:latest
     build:
+      target: web
       context: .
-      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "8000:80"
     volumes:
-      - .:/var/www
-    networks:
-      - app-network
-    environment:
-      SERVICE_NAME: app
+      - .:/var/www/html
     depends_on:
       - db
-    ports:
-      - "9000:9000"
-
+  
   db:
+    platform: "linux/amd64"
     image: mysql:5.7
-    restart: always
     environment:
-      MYSQL_DATABASE: shikkhaseba_db
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
 
 volumes:
   dbdata:

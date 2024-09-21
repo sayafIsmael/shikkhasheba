@@ -1,50 +1,43 @@
 # Use PHP 7.2 FPM base image
-FROM php:7.2-fpm
+FROM php:7.2-apache as web
 
-# Install system dependencies
+# Install Additional System Dependencies
 RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
     libzip-dev \
-    unzip \
-    git \
-    curl \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install gd \
-    && docker-php-ext-install zip
+    zip
 
-# Install Composer globally
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Enable Apache mod_rewrite for URL rewriting
+RUN a2enmod rewrite
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql zip
+
+# Configure Apache DocumentRoot to point to Laravel's public directory
+# and update Apache configuration files
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Copy the application code
+COPY . /var/www/html
+
+# Set the working directory
+WORKDIR /var/www/html
+
+# Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Set working directory
-WORKDIR /var/www
+# Install project dependencies
+RUN composer install
 
-# Copy composer files
-COPY composer.json composer.lock ./
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Install PHP dependencies (skipping scripts and dev dependencies)
-RUN composer install --prefer-dist --no-scripts --no-dev --optimize-autoloader || true
+# Copy the entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
-# Copy the entire project into the container
-COPY . .
-
-RUN mkdir -p database/seeds && mkdir -p database/seeders
-
-RUN composer dump-autoload --optimize
-
-# Handle autoloading issues, dump autoload if needed
-RUN composer dump-autoload --optimize
-
-# Install Node.js 10.x
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-    && apt-get install -y nodejs
-
-# Install NPM dependencies
-RUN npm install
-
-# Expose port 9000 for PHP-FPM
-EXPOSE 9000
-
-# Start the PHP-FPM server
-CMD ["php-fpm"]
+# Set the entrypoint
+ENTRYPOINT ["bash", "/usr/local/bin/entrypoint.sh"]
